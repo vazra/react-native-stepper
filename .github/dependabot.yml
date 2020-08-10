@@ -1,0 +1,29 @@
+# Sample DependABot Config
+
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/demos/electron-react/'
+    schedule:
+      interval: 'daily'
+    ignore:
+      # Ignore auto updates for electron, which may affect prebuild availability for realm
+      - dependency-name: 'electron'
+    reviewers:
+      - 'vazra'
+    labels:
+      - 'dependencies'
+    open-pull-requests-limit: 2
+    
+  - package-ecosystem: 'npm'
+    directory: '/examples/electron-react/'
+    schedule:
+      interval: 'daily'
+    ignore:
+      # Ignore auto updates for electron, which may affect prebuild availability for realm
+      - dependency-name: 'electron'
+    reviewers:
+      - 'vazra'
+    labels:
+      - 'dependencies'
+    open-pull-requests-limit: 2

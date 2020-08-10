@@ -1,0 +1,58 @@
+{
+  "name": "@material.ui/react-native-stepper",
+  "private": false,
+  "version": "1.0.0",
+  "description": "Typescript friendly, Material UI Stepper implementation in React Native",
+  "main": "lib/cjs/index.js",
+  "module": "lib/es/index.js",
+  "jsnext:main": "lib/es/index.js",
+  "scripts": {
+    "watch": "yarn clean && tsc -p tsconfig.json -w & tsc -p tsconfig-cjs.json -w",
+    "build": "yarn clean && tsc -p tsconfig.json & tsc -p tsconfig-cjs.json",
+    "format": "prettier --write \"src/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "test": "jest --coverage",
+    "kkprepublishOnly": "yarn test && yarn lint",
+    "preversion": "yarn lint",
+    "kkversion": "yarn format && git add -A src",
+    "kkpostversion": "git push && git push --tags",
+    "clean": "shx rm -rf lib/*",
+    "kktest": "mocha --ui qunit",
+    "testall": "mocha --ui qunit dist/sample/test",
+    "rebuild": "electron-rebuild -f -w better-sqlite3 -v 9.0.5",
+    "push": "yarn build && yalc push"
+  },
+  "keywords": [
+    "material",
+    "ui",
+    "react",
+    "native",
+    "reactnative",
+    "stepper"
+  ],
+  "files": [
+    "lib"
+  ],
+  "directories": {
+    "lib": "lib"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "md5": "2.2.1"
+  },
+  "devDependencies": {
+    "@types/md5": "2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vazra/react-native-stepper.git"
+  },
+  "author": "Vazra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vazra/react-native-stepper/issues"
+  },
+  "homepage": "https://github.com/vazra/react-native-stepper#readme"
+}
