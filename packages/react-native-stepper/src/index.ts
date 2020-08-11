@@ -1,4 +1,5 @@
-import ProgressSteps from './src/ProgressSteps/ProgressSteps'
-import ProgressStep from './src/ProgressSteps/ProgressStep'
+// export { Stepper } from './Stepper'
+// export { Step } from './Step'
 
-export { ProgressSteps, ProgressStep }
+export { StepperContainer } from './StepperContainer'
+export { StepView } from './step/StepView'

@@ -2,7 +2,11 @@
 
 > Typescript friendly, Material UI Stepper implementation in React Native.
 
-> The aim is to develop with all features of stepper as provided in the [Material UI Guidelines](https://material.io/archive/guidelines/components/steppers.html). But, the v1 does not have all those features. But ready to be used in production as an alternative
+> The aim is to develop with all features of stepper as provided in the [Material UI Guidelines](https://material.io/archive/guidelines/components/steppers.html). But, the v1 does not have all those features. But ready to be used in production as an alternative.
+
+> If you are a developer, please contribute to make this project more useful for everyone!
+
+> Create issues for any bugs or future requests.
 
 ## Installation
 

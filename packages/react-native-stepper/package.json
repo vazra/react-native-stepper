@@ -39,14 +39,22 @@
   "publishConfig": {
     "access": "public"
   },
+  "peerDependencies": {
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-native": "^0.62.0"
+  },
   "dependencies": {
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "react-native-paper": "^4.0.1"
   },
   "devDependencies": {
+    "@types/react": "16.8.24",
+    "@types/react-dom": "^16.9.8",
     "@types/lodash": "^4.14.159",
-    "@types/prop-types": "^15.7.3"
+    "@types/prop-types": "^15.7.3",
+    "@types/react-native": "^0.63.6"
   },
   "repository": {
     "type": "git",

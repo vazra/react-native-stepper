@@ -45,7 +45,8 @@
     "rimraf": "3.0.2",
     "tslib": "^2.0.0",
     "tslint": "^6.1.2",
-    "tslint-config-prettier": "^1.18.0"
+    "tslint-config-prettier": "^1.18.0",
+    "expo-yarn-workspaces": "^1.2.1"
   },
   "husky": {
     "hooks": {
