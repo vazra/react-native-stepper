@@ -14,6 +14,7 @@ type Props = {
   onPrevious?: () => boolean | string
 }
 
+// view for horizontal stepper
 export function StepView({ position, title, subTitle, stepContent, onNext, onPrevious }: Props) {
   const { activeStep, stepCount, jumpStep } = useStep()
 
