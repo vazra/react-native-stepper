@@ -40,8 +40,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-native": "^0.62.0"
   },
   "dependencies": {
@@ -65,5 +65,6 @@
   "bugs": {
     "url": "https://github.com/vazra/react-native-stepper/issues"
   },
-  "homepage": "https://github.com/vazra/react-native-stepper#readme"
+  "homepage": "https://github.com/vazra/react-native-stepper#readme",
+  "gitHead": "408b31cf26e118423a63986c876f5f40e04b71b4"
 }

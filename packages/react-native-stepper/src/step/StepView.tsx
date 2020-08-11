@@ -9,21 +9,28 @@ type Props = {
   position: number
   title?: string
   subTitle?: string
-  stepContent: Element
+  children: Element
   onNext?: () => boolean | string
   onPrevious?: () => boolean | string
 }
 
 // view for horizontal stepper
-export function StepView({ position, title, subTitle, stepContent, onNext, onPrevious }: Props) {
+export function StepView({ position, title, subTitle, children, onNext, onPrevious }: Props) {
   const { activeStep, stepCount, jumpStep } = useStep()
+  if (onNext === undefined) onNext = () => true
+  if (onPrevious === undefined && position !== 0) onPrevious = () => true
+
+  if (position === 0) onPrevious = undefined
 
   const [err, setErr] = useState<string | undefined>(undefined)
   const onNextPressed = async () => {
     // start loading screen
     const isValid = onNext && (await onNext())
+    console.log('jumbing.. ', isValid)
+
     if (isValid === true) {
       setErr(undefined)
+      jumpStep && jumpStep('up')
     } else {
       if (typeof isValid === 'string') setErr(isValid)
     }
@@ -35,6 +42,8 @@ export function StepView({ position, title, subTitle, stepContent, onNext, onPre
     const isValid = onPrevious && (await onPrevious())
     if (isValid === true) {
       setErr(undefined)
+      console.log('jumping down')
+      jumpStep && jumpStep('down')
     } else {
       if (typeof isValid === 'string') setErr(isValid)
     }
@@ -42,17 +51,22 @@ export function StepView({ position, title, subTitle, stepContent, onNext, onPre
   }
 
   const NextButton = <Button title='Next' onPress={onNextPressed} />
-  const PreviousButton = <Button title='Back' onPress={onNextPressed} />
+  const PreviousButton = <Button title='Back' onPress={onPreviousPressed} />
 
   return (
     <View>
       <StepHeaderView title={title} subTitle={subTitle} position={position}></StepHeaderView>
+      <Text>Active: {activeStep}</Text>
       {err && <View>{err}</View>}
-      <View>{stepContent}</View>
-      <View>
-        {NextButton}
-        {PreviousButton}
-      </View>
+      {position === activeStep && (
+        <>
+          <View>{children}</View>
+          <View>
+            {onNext && NextButton}
+            {onPrevious && PreviousButton}
+          </View>
+        </>
+      )}
     </View>
   )
 }

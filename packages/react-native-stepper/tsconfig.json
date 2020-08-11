@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "./lib/es",
-    "jsx": "react-native"
+    "jsx": "react"
   },
   "include": ["./src"]
 }

@@ -4,13 +4,13 @@ import React, { useEffect, useContext } from 'react'
 type ContextProps = {
   activeStep: number
   stepCount: number
-  jumpStep: (type?: 'up' | 'down') => void
+  jumpStep: ((type: 'up' | 'down') => void) | undefined
 }
 
 export const StepContext = React.createContext<ContextProps>({
   activeStep: 0,
   stepCount: 0,
-  jumpStep: (type?: 'up' | 'down') => {},
+  jumpStep: undefined,
 })
 
 export function useStep() {
@@ -25,16 +25,24 @@ export const StepProvider = ({ children }: Props) => {
   const [activeStep, setActiveStep] = React.useState<number>(0)
   const [stepCount, setStepCount] = React.useState<number>(0)
 
+  useEffect(() => {
+    const count = React.Children.count(children)
+    console.log('Children Count', count)
+    setStepCount(count)
+  }, [])
+
   // Callback function from ProgressStep that passes current step.
-  const jumpStep = (type?: 'up' | 'down') => {
+  const jumpStep = (type: 'up' | 'down') => {
     // Guard against setting current step higher than total step count.
     let change = 0
-    if ((type = 'up')) change = 1
-    else if ((type = 'down')) change = -1
+    if (type === 'up') change = 1
+    else if (type === 'down') change = -1
 
     setActiveStep((actStep) => {
       const newVal = actStep + change
-      return newVal > -1 && newVal < stepCount - 1 ? newVal : actStep
+      console.log('jumbing.. ', type, change, ' act:', activeStep, newVal)
+
+      return newVal > -1 && newVal < stepCount ? newVal : actStep
     })
   }
 

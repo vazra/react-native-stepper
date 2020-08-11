@@ -7,6 +7,7 @@ type Props = {
   subTitle?: string
 }
 
+// TODO: Add horizontal view
 export function StepHeaderView({ position, title, subTitle }: Props) {
   return (
     <View>
