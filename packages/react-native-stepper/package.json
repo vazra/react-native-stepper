@@ -1,7 +1,7 @@
 {
   "name": "@material.ui/react-native-stepper",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Typescript friendly, Material UI Stepper implementation in React Native",
   "main": "lib/cjs/index.js",
   "module": "lib/es/index.js",
@@ -50,10 +50,10 @@
     "react-native-paper": "^4.0.1"
   },
   "devDependencies": {
-    "@types/react": "16.8.24",
-    "@types/react-dom": "^16.9.8",
     "@types/lodash": "^4.14.159",
     "@types/prop-types": "^15.7.3",
+    "@types/react": "16.8.24",
+    "@types/react-dom": "^16.9.8",
     "@types/react-native": "^0.63.6"
   },
   "repository": {
