@@ -1,6 +1,6 @@
 {
   "name": "example-app",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "main": "__generated__/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -11,7 +11,7 @@
     "postinstall": "expo-yarn-workspaces postinstall"
   },
   "dependencies": {
-    "@material.ui/react-native-stepper": "^1.1.0",
+    "@material.ui/react-native-stepper": "^1.2.0",
     "expo": "~38.0.8",
     "expo-status-bar": "^1.0.2",
     "react": "~16.11.0",
