@@ -1,7 +1,7 @@
 {
   "name": "@material.ui/react-native-stepper",
   "private": false,
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Typescript friendly, Material UI Stepper implementation in React Native",
   "main": "lib/cjs/index.js",
   "module": "lib/es/index.js",
