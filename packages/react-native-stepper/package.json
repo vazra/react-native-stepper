@@ -1,10 +1,11 @@
 {
   "name": "@material.ui/react-native-stepper",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Typescript friendly, Material UI Stepper implementation in React Native",
   "main": "lib/cjs/index.js",
   "module": "lib/es/index.js",
+  "types": "lib/cjs/index.d.ts",
   "jsnext:main": "lib/es/index.js",
   "scripts": {
     "watch": "yarn clean && tsc -p tsconfig.json -w & tsc -p tsconfig-cjs.json -w",
@@ -39,11 +40,22 @@
   "publishConfig": {
     "access": "public"
   },
+  "peerDependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-native": "^0.62.0"
+  },
   "dependencies": {
-    "md5": "2.2.1"
+    "lodash": "^4.17.11",
+    "prop-types": "^15.6.2",
+    "react-native-paper": "^4.0.1"
   },
   "devDependencies": {
-    "@types/md5": "2.2.0"
+    "@types/lodash": "^4.14.159",
+    "@types/prop-types": "^15.7.3",
+    "@types/react": "16.8.24",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-native": "^0.63.6"
   },
   "repository": {
     "type": "git",
@@ -54,5 +66,6 @@
   "bugs": {
     "url": "https://github.com/vazra/react-native-stepper/issues"
   },
-  "homepage": "https://github.com/vazra/react-native-stepper#readme"
+  "homepage": "https://github.com/vazra/react-native-stepper#readme",
+  "gitHead": "408b31cf26e118423a63986c876f5f40e04b71b4"
 }
