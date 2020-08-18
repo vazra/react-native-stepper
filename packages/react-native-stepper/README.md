@@ -10,7 +10,7 @@
 
 > Create issues for any bugs or future requests.
 
-View [Demo Here](https://snack.expo.io/@mocioun/react-native-material-ui-stepper)
+View [Demo Here](https://snack.expo.io/@mocioun/react-native-material-ui-stepper) (Note: Some UI components are missing in react-native-web, so try it in iOS or Android)
 
 ## Installation
 
