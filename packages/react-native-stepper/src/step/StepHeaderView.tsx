@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
 type Props = {
   position: number
@@ -10,10 +10,26 @@ type Props = {
 // TODO: Add horizontal view
 export function StepHeaderView({ position, title, subTitle }: Props) {
   return (
-    <View>
-      <Text>Position: {position}</Text>
-      <Text>{title}</Text>
-      <Text>{subTitle}</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
+      {subTitle && <Text style={styles.subTitle}>{subTitle}</Text>}
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 4,
+    // backgroundColor: 'blue',
+    flexDirection: 'column',
+  },
+  title: {
+    // backgroundColor: 'green',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  subTitle: {
+    // backgroundColor: 'green',
+    fontSize: 12,
+  },
+})
