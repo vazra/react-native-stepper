@@ -1,8 +1,7 @@
 import React from 'react'
-import { View, Text, Button, StyleSheet, TouchableOpacity, GestureResponderEvent } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { StepHeaderView } from './StepHeaderView'
 import { useState } from 'react'
-import { instanceOf, string } from 'prop-types'
 import { useStep } from '../StepProvider'
 import { ActionButton } from './ActionButton'
 import { lineColor } from '../constants'
@@ -63,12 +62,9 @@ export function StepView({ position, title, subTitle, children, onNext, onPrevio
       <View style={styles.contentRow}>
         <StepHeaderView title={title} subTitle={subTitle} position={position}></StepHeaderView>
         <View style={styles.contentView}>
-          {err && <View>{err}</View>}
+          {err && <Text style={{ color: 'red' }}>{`Error: ${err}`}</Text>}
           {position === activeStep && (
             <>
-              <Text>Position: {position}</Text>
-              <Text>Active Step: {activeStep}</Text>
-              <Text>Step Count: {stepCount}</Text>
               <View style={styles.contentChildren}>{children}</View>
               <View style={styles.buttonRow}>
                 <ActionButton title='Back' color={themeColor} onPress={onPreviousPressed} hidden={onPrevious === undefined} />
@@ -79,22 +75,14 @@ export function StepView({ position, title, subTitle, children, onNext, onPrevio
         </View>
       </View>
     </View>
-    // <View>
-    //
-    //   <Text>Active: {activeStep}</Text>
-
-    // </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: 'green',
     flexDirection: 'row',
   },
-  indexRow: {
-    // backgroundColor: 'yellow',
-  },
+  indexRow: {},
   connectingLine: {
     flexGrow: 1,
     width: 1,
@@ -103,7 +91,6 @@ const styles = StyleSheet.create({
     margin: 4,
   },
   contentRow: {
-    // backgroundColor: 'orange',
     paddingBottom: 16,
     flexShrink: 1,
     flexGrow: 1,
@@ -112,12 +99,8 @@ const styles = StyleSheet.create({
   },
   contentView: {
     padding: 4,
-    // borderColor: 'green',
-    // borderWidth: 1,
   },
-  contentChildren: {
-    // alignContent: 'stretch',
-  },
+  contentChildren: {},
   stepperCircle: {
     width: 24,
     height: 24,
@@ -133,14 +116,6 @@ const styles = StyleSheet.create({
 
   buttonRow: {
     flexDirection: 'row',
-    // backgroundColor: 'green',
     paddingVertical: 16,
   },
 })
-
-// function something() {
-//   return (
-//       <Text>Item 1</Text>
-//       <Text>Item 2</Text>
-//   )
-// }

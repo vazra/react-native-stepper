@@ -8,7 +8,7 @@
 
 > If you are a developer, please contribute to make this project more useful for everyone!
 
-> Create issues for any bugs or future requests.
+> Create issues for any bugs or feature requests.
 
 View [Demo Here](https://snack.expo.io/@mocioun/react-native-material-ui-stepper)
 
@@ -32,10 +32,14 @@ or
 | children    | StepView[]                 | `null`      | Step Views                                |
 
 **StepView**
-| Param | Type | Default | Description |
-| title | string | '' | Step Title |
-| subTitle | string | '' | Step Sub Title |
-| children | React.Node | `null` | React Node to display as step content |
+
+| Param                | Type                   | Default     | Description                                                                                                                                                                                      |
+| -------------------- | ---------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| title                | string                 | ''          | Step Title                                                                                                                                                                                       |
+| subTitle (optional)  | string                 | ''          | Step Sub Title                                                                                                                                                                                   |
+| children             | React.Node             | `null`      | React Node to display as step content                                                                                                                                                            |
+| onNext(optional)     | `() => boolean|string` | `() =>true` | if onNext is given this will be called when next button from the step is pressed, and goes to the next step/submit only if this returns true. If it returns a string, it will be shown as error  |
+| onPrevious(optional) | `() => boolean|string` | `() =>true` | if onPrevious is given this will be called when back button from the step is pressed, and goes to the previous step only if this returns true. If it returns a string, it will be shown as error |
 
 ## Usage
 

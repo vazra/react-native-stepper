@@ -20,16 +20,13 @@ export function StepHeaderView({ position, title, subTitle }: Props) {
 const styles = StyleSheet.create({
   container: {
     padding: 4,
-    // backgroundColor: 'blue',
     flexDirection: 'column',
   },
   title: {
-    // backgroundColor: 'green',
     fontSize: 14,
     fontWeight: '600',
   },
   subTitle: {
-    // backgroundColor: 'green',
     fontSize: 12,
   },
 })
