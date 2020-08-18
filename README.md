@@ -52,7 +52,7 @@ import { StepperContainer, StepView } from '@material.ui/react-native-stepper'
   <StepView title='Intro' subTitle='The intro details'>
     <Text>Step 1 Contents</Text>
   </StepView>
-  <StepView title='Second' subTitle='Name and other details'>
+  <StepView title='Second' onNext={() => true} subTitle='Name and other details'>
     <Text>Step 2 Contents</Text>
   </StepView>
   <StepView title='Third Step' subTitle='Some lines'>
