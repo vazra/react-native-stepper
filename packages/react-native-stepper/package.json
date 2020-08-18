@@ -5,6 +5,7 @@
   "description": "Typescript friendly, Material UI Stepper implementation in React Native",
   "main": "lib/cjs/index.js",
   "module": "lib/es/index.js",
+  "types": "lib/cjs/index.d.ts",
   "jsnext:main": "lib/es/index.js",
   "scripts": {
     "watch": "yarn clean && tsc -p tsconfig.json -w & tsc -p tsconfig-cjs.json -w",

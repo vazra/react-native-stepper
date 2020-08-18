@@ -1,15 +1,16 @@
-import React, { useEffect, useContext } from 'react'
-// import { Step } from './Step'
+import React, { useEffect, useContext, ReactElement } from 'react'
 
 type ContextProps = {
   activeStep: number
   stepCount: number
+  themeColor: string
   jumpStep: ((type: 'up' | 'down') => void) | undefined
 }
 
 export const StepContext = React.createContext<ContextProps>({
   activeStep: 0,
   stepCount: 0,
+  themeColor: '#2196F3',
   jumpStep: undefined,
 })
 
@@ -17,11 +18,11 @@ export function useStep() {
   return useContext(StepContext)
 }
 type Props = {
-  children: React.ReactNode
-  // steps: typeof Step[]
+  children: ReactElement[]
+  themeColor: string
 }
 
-export const StepProvider = ({ children }: Props) => {
+export const StepProvider = ({ children, themeColor }: Props) => {
   const [activeStep, setActiveStep] = React.useState<number>(0)
   const [stepCount, setStepCount] = React.useState<number>(0)
 
@@ -51,5 +52,8 @@ export const StepProvider = ({ children }: Props) => {
   //   // TODO: Set this in asyc storage or something
   // }, [currentUser])
 
-  return <StepContext.Provider value={{ activeStep, stepCount, jumpStep }}>{children}</StepContext.Provider>
+  const childrenArray = React.Children.toArray(children)
+  const clonedArray = childrenArray.map((aChild, idx) => React.cloneElement(aChild, { position: idx }))
+
+  return <StepContext.Provider value={{ activeStep, stepCount, jumpStep, themeColor }}>{<>{clonedArray}</>}</StepContext.Provider>
 }

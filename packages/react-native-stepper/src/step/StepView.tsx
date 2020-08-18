@@ -4,6 +4,8 @@ import { StepHeaderView } from './StepHeaderView'
 import { useState } from 'react'
 import { instanceOf, string } from 'prop-types'
 import { useStep } from '../StepProvider'
+import { ActionButton } from './ActionButton'
+import { lineColor } from '../constants'
 
 type Props = {
   position: number
@@ -16,7 +18,7 @@ type Props = {
 
 // view for horizontal stepper
 export function StepView({ position, title, subTitle, children, onNext, onPrevious }: Props) {
-  const { activeStep, stepCount, jumpStep } = useStep()
+  const { activeStep, stepCount, jumpStep, themeColor } = useStep()
   if (onNext === undefined) onNext = () => true
   if (onPrevious === undefined && position !== 0) onPrevious = () => true
 
@@ -51,77 +53,94 @@ export function StepView({ position, title, subTitle, children, onNext, onPrevio
   }
 
   return (
-    <View>
-      <StepHeaderView title={title} subTitle={subTitle} position={position}></StepHeaderView>
-      <Text>Active: {activeStep}</Text>
-      {err && <View>{err}</View>}
-      {position === activeStep && (
-        <>
-          <View>{children}</View>
-          <View style={styles.buttonRow}>
-            <ActionButton title='Back' onPress={onPreviousPressed} hidden={onPrevious === undefined} />
-            <ActionButton title='Next' onPress={onNextPressed} hidden={onNext === undefined} />
-          </View>
-        </>
-      )}
+    <View style={styles.container}>
+      <View style={styles.indexRow}>
+        <View style={{ ...styles.stepperCircle, backgroundColor: position <= activeStep ? themeColor : lineColor }}>
+          <Text style={styles.stepperCircleText}>{position + 1}</Text>
+        </View>
+        {position < stepCount - 1 && <View style={styles.connectingLine} />}
+      </View>
+      <View style={styles.contentRow}>
+        <StepHeaderView title={title} subTitle={subTitle} position={position}></StepHeaderView>
+        <View style={styles.contentView}>
+          {err && <View>{err}</View>}
+          {position === activeStep && (
+            <>
+              <Text>Position: {position}</Text>
+              <Text>Active Step: {activeStep}</Text>
+              <Text>Step Count: {stepCount}</Text>
+              <View style={styles.contentChildren}>{children}</View>
+              <View style={styles.buttonRow}>
+                <ActionButton title='Back' color={themeColor} onPress={onPreviousPressed} hidden={onPrevious === undefined} />
+                <ActionButton title='Next' color={themeColor} onPress={onNextPressed} hidden={onNext === undefined} />
+              </View>
+            </>
+          )}
+        </View>
+      </View>
     </View>
+    // <View>
+    //
+    //   <Text>Active: {activeStep}</Text>
+
+    // </View>
   )
 }
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    // backgroundColor: 'red',
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    // backgroundColor: 'green',
+    flexDirection: 'row',
   },
+  indexRow: {
+    // backgroundColor: 'yellow',
+  },
+  connectingLine: {
+    flexGrow: 1,
+    width: 1,
+    backgroundColor: lineColor,
+    alignSelf: 'center',
+    margin: 4,
+  },
+  contentRow: {
+    // backgroundColor: 'orange',
+    paddingBottom: 16,
+    flexShrink: 1,
+    flexGrow: 1,
+    flexDirection: 'column',
+    alignItems: 'stretch',
+  },
+  contentView: {
+    padding: 4,
+    // borderColor: 'green',
+    // borderWidth: 1,
+  },
+  contentChildren: {
+    // alignContent: 'stretch',
+  },
+  stepperCircle: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    justifyContent: 'center',
+    margin: 4,
+  },
+  stepperCircleText: {
+    color: 'white',
+    alignSelf: 'center',
+    fontSize: 12,
+  },
+
   buttonRow: {
-    // flex: 1,
     flexDirection: 'row',
     // backgroundColor: 'green',
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    paddingVertical: 16,
   },
 })
 
-type ActionButtonProps = {
-  hidden?: boolean
-  style?: { [key: string]: any }
-  title: string
-  onPress: ((event: GestureResponderEvent) => void) | undefined
-}
-
-const hideStyle = {
-  width: 0,
-  paddingHorizontal: 0,
-}
-
-const ActionButton = ({
-  hidden = false,
-  style = {
-    backgroundColor: '#2196F3',
-    color: 'white',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 4,
-    elevation: 4,
-    shadowOffset: { width: 5, height: 5 },
-    shadowColor: 'grey',
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-  },
-  title,
-  onPress,
-}: ActionButtonProps) => {
-  // occupy space but hide.
-  const hide = hidden
-    ? {
-        width: 0,
-        paddingHorizontal: 0,
-      }
-    : {}
-  return (
-    <TouchableOpacity style={{ ...style, ...hide }} disabled={hidden} onPress={onPress}>
-      <Text style={{ color: style.color }}>{title}</Text>
-    </TouchableOpacity>
-  )
-}
+// function something() {
+//   return (
+//       <Text>Item 1</Text>
+//       <Text>Item 2</Text>
+//   )
+// }
