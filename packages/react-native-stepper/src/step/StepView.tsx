@@ -31,7 +31,9 @@ export function StepView({
 }: Props) {
   const { activeStep, stepCount, jumpStep, themeColor } = useStep()
   if (onNext === undefined) onNext = () => true
-  if (onPrevious === undefined && position !== 0) onPrevious = () => true
+
+  // undefined when tap on title is not allowd
+  if (onPrevious === undefined && position !== 0 && !allowTapOnTitle) onPrevious = () => true
 
   if (position === 0) onPrevious = undefined
 
@@ -80,6 +82,7 @@ export function StepView({
               <View style={styles.contentChildren}>{children}</View>
               <View style={styles.buttonRow}>
                 <ActionButton title={previousButtonText} color={themeColor} onPress={onPreviousPressed} hidden={onPrevious === undefined} />
+
                 <ActionButton title={nextButtonText} color={themeColor} onPress={onNextPressed} hidden={onNext === undefined} />
               </View>
             </>

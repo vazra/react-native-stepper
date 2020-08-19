@@ -64,6 +64,11 @@ import { StepperContainer, StepView } from '@material.ui/react-native-stepper'
 </StepperContainer>
 ```
 
+## Notes
+
+- If TapOnTitle is allowed, the user can navigate to back to the previous steps with a tap on the title of the step.
+- When TapOnTitle is enabled, the back button is hidden by default. But back button will be showing in steps which have the prop of onPrevious available
+
 ## License
 
 Copyright © 2020 Vazra, MIT License
