@@ -1,22 +1,32 @@
-import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { StepHeaderView } from './StepHeaderView'
-import { useState } from 'react'
+import React, { useState, ReactNode } from 'react'
 import { useStep } from '../StepProvider'
 import { ActionButton } from './ActionButton'
 import { lineColor } from '../constants'
 
 type Props = {
-  position: number
+  position?: number
   title?: string
   subTitle?: string
-  children: Element
+  nextButtonText?: string
+  previousButtonText?: string
+  children: ReactNode
   onNext?: () => boolean | string
   onPrevious?: () => boolean | string
 }
 
 // view for horizontal stepper
-export function StepView({ position, title, subTitle, children, onNext, onPrevious }: Props) {
+export function StepView({
+  position = 0,
+  title,
+  subTitle,
+  children,
+  onNext,
+  onPrevious,
+  nextButtonText = 'Next',
+  previousButtonText = 'Back',
+}: Props) {
   const { activeStep, stepCount, jumpStep, themeColor } = useStep()
   if (onNext === undefined) onNext = () => true
   if (onPrevious === undefined && position !== 0) onPrevious = () => true
@@ -67,8 +77,8 @@ export function StepView({ position, title, subTitle, children, onNext, onPrevio
             <>
               <View style={styles.contentChildren}>{children}</View>
               <View style={styles.buttonRow}>
-                <ActionButton title='Back' color={themeColor} onPress={onPreviousPressed} hidden={onPrevious === undefined} />
-                <ActionButton title='Next' color={themeColor} onPress={onNextPressed} hidden={onNext === undefined} />
+                <ActionButton title={previousButtonText} color={themeColor} onPress={onPreviousPressed} hidden={onPrevious === undefined} />
+                <ActionButton title={nextButtonText} color={themeColor} onPress={onNextPressed} hidden={onNext === undefined} />
               </View>
             </>
           )}
