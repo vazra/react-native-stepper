@@ -5,6 +5,7 @@ type ContextProps = {
   stepCount: number
   themeColor: string
   jumpStep: ((type: 'up' | 'down') => void) | undefined
+  jumpToStep: ((newStep: number) => void) | undefined
 }
 
 export const StepContext = React.createContext<ContextProps>({
@@ -12,6 +13,7 @@ export const StepContext = React.createContext<ContextProps>({
   stepCount: 0,
   themeColor: '#2196F3',
   jumpStep: undefined,
+  jumpToStep: undefined,
 })
 
 export function useStep() {
@@ -21,9 +23,10 @@ type Props = {
   children: ReactElement[]
   themeColor: string
   submitButtonText: string
+  allowTapOnTitle: boolean
 }
 
-export const StepProvider = ({ children, themeColor, submitButtonText }: Props) => {
+export const StepProvider = ({ children, themeColor, submitButtonText, allowTapOnTitle }: Props) => {
   const [activeStep, setActiveStep] = React.useState<number>(0)
   const [stepCount, setStepCount] = React.useState<number>(0)
 
@@ -48,17 +51,21 @@ export const StepProvider = ({ children, themeColor, submitButtonText }: Props) 
     })
   }
 
-  // useEffect(() => {
-  //   console.log('Logged in user updated...', currentUser)
-  //   // TODO: Set this in asyc storage or something
-  // }, [currentUser])
+  // jumpToStep
+  const jumpToStep = (newStep: number) => {
+    // Guard against setting current step higher than active step count.
+    if (newStep < activeStep && newStep >= 0) {
+      setActiveStep(newStep)
+    }
+  }
 
   const childrenArray = React.Children.toArray(children)
   const clonedArray = childrenArray.map((aChild, idx) => {
     const newProps: { [key: string]: any } = { position: idx }
+    if (allowTapOnTitle) newProps['allowTapOnTitle'] = submitButtonText
     if (idx === childrenArray.length - 1) newProps['nextButtonText'] = submitButtonText
     return React.cloneElement(aChild, newProps)
   })
 
-  return <StepContext.Provider value={{ activeStep, stepCount, jumpStep, themeColor }}>{<>{clonedArray}</>}</StepContext.Provider>
+  return <StepContext.Provider value={{ activeStep, stepCount, jumpStep, jumpToStep, themeColor }}>{<>{clonedArray}</>}</StepContext.Provider>
 }

@@ -1,18 +1,35 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { useStep } from '../StepProvider'
 
 type Props = {
   position: number
   title?: string
   subTitle?: string
+  allowTapOnTitle: boolean
 }
 
 // TODO: Add horizontal view
-export function StepHeaderView({ position, title, subTitle }: Props) {
+export function StepHeaderView({ position, title, subTitle, allowTapOnTitle }: Props) {
+  const { jumpToStep } = useStep()
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      {subTitle && <Text style={styles.subTitle}>{subTitle}</Text>}
+      <Text
+        style={styles.title}
+        onPress={() => {
+          allowTapOnTitle && jumpToStep && jumpToStep(position)
+        }}>
+        {title}
+      </Text>
+      {subTitle && (
+        <Text
+          onPress={() => {
+            allowTapOnTitle && jumpToStep && jumpToStep(position)
+          }}
+          style={styles.subTitle}>
+          {subTitle}
+        </Text>
+      )}
     </View>
   )
 }

@@ -11,6 +11,7 @@ type Props = {
   submitButtonText?: string
   children: ReactElement<typeof StepView>[]
   layout?: 'vertical' | 'horizontal'
+  allowTapOnTitle?: boolean
 }
 
 export function StepperContainer({
@@ -18,12 +19,13 @@ export function StepperContainer({
   layout = 'vertical',
   submitButtonText = 'Submit',
   contentViewStyle = {},
+  allowTapOnTitle = false,
   children,
 }: Props) {
   return (
     <ScrollView style={{ ...styles.container, ...contentViewStyle }}>
       {layout === 'vertical' ? (
-        <StepProvider themeColor={themeColor} submitButtonText={submitButtonText}>
+        <StepProvider themeColor={themeColor} submitButtonText={submitButtonText} allowTapOnTitle={allowTapOnTitle}>
           {children}
         </StepProvider>
       ) : (
