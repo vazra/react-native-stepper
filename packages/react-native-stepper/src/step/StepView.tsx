@@ -13,8 +13,8 @@ type Props = {
   previousButtonText?: string
   allowTapOnTitle?: boolean
   children: ReactNode
-  onNext?: () => boolean | string
-  onPrevious?: () => boolean | string
+  onNext?: (...params: any[]) => Promise<boolean | string>
+  onPrevious?: (...params: any[]) => Promise<boolean | string>
 }
 
 // view for horizontal stepper
@@ -30,10 +30,10 @@ export function StepView({
   allowTapOnTitle,
 }: Props) {
   const { activeStep, stepCount, jumpStep, themeColor } = useStep()
-  if (onNext === undefined) onNext = () => true
+  if (onNext === undefined) onNext = () => Promise.resolve(true)
 
   // undefined when tap on title is not allowd
-  if (onPrevious === undefined && position !== 0 && !allowTapOnTitle) onPrevious = () => true
+  if (onPrevious === undefined && position !== 0 && !allowTapOnTitle) onPrevious = () => Promise.resolve(true)
 
   if (position === 0) onPrevious = undefined
 
