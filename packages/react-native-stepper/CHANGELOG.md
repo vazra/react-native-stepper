@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/vazra/react-native-stepper/compare/v1.3.0...v1.3.1) (2020-08-19)
+
+
+### Bug Fixes
+
+* function params allowed in onNext & onPrevious ([cb8ae16](https://github.com/vazra/react-native-stepper/commit/cb8ae16b18c138b4f3fc592713e1cd7636059310))
+
+
+### Features
+
+* loading indicator added for button actions ([a466677](https://github.com/vazra/react-native-stepper/commit/a46667717ad8afdbc123ccd57e3a5425660c7c6d))
+
+
+
+
+
 # [1.3.0](https://github.com/vazra/react-native-stepper/compare/v1.2.2...v1.3.0) (2020-08-19)
 
 
