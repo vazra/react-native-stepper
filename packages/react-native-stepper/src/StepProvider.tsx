@@ -20,9 +20,10 @@ export function useStep() {
 type Props = {
   children: ReactElement[]
   themeColor: string
+  submitButtonText: string
 }
 
-export const StepProvider = ({ children, themeColor }: Props) => {
+export const StepProvider = ({ children, themeColor, submitButtonText }: Props) => {
   const [activeStep, setActiveStep] = React.useState<number>(0)
   const [stepCount, setStepCount] = React.useState<number>(0)
 
@@ -53,7 +54,11 @@ export const StepProvider = ({ children, themeColor }: Props) => {
   // }, [currentUser])
 
   const childrenArray = React.Children.toArray(children)
-  const clonedArray = childrenArray.map((aChild, idx) => React.cloneElement(aChild, { position: idx }))
+  const clonedArray = childrenArray.map((aChild, idx) => {
+    const newProps: { [key: string]: any } = { position: idx }
+    if (idx === childrenArray.length - 1) newProps['nextButtonText'] = submitButtonText
+    return React.cloneElement(aChild, newProps)
+  })
 
   return <StepContext.Provider value={{ activeStep, stepCount, jumpStep, themeColor }}>{<>{clonedArray}</>}</StepContext.Provider>
 }
