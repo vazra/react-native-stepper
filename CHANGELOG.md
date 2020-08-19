@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/vazra/react-native-stepper/compare/v1.2.2...v1.3.0) (2020-08-19)
+
+
+### Bug Fixes
+
+* back button behaviour when tapOnTitle is allowed ([15b69f4](https://github.com/vazra/react-native-stepper/commit/15b69f4e735a069fab52266a4701e0d1bc82171a))
+
+
+### Features
+
+* added provision to jump to previous steps ([6d6e006](https://github.com/vazra/react-native-stepper/commit/6d6e0064c591ca93f19be6b2b82260641071583f))
+* option to add content view style ([1e8e494](https://github.com/vazra/react-native-stepper/commit/1e8e494ed0d3a3b87d63b166c9c49ca8b92e1411))
+* option to add submit button text ([9d1e533](https://github.com/vazra/react-native-stepper/commit/9d1e5333623b7f017ee1b47ec4be523ffca960e7))
+
+
+
+
+
 ## [1.2.2](https://github.com/vazra/react-native-stepper/compare/v1.2.1...v1.2.2) (2020-08-18)
 
 **Note:** Version bump only for package material.ui
