@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Button, StyleSheet, TouchableOpacity, GestureResponderEvent } from 'react-native'
+import { View, Text, Button, StyleSheet, TouchableOpacity, GestureResponderEvent, ActivityIndicator } from 'react-native'
 import { StepHeaderView } from './StepHeaderView'
 import { useState } from 'react'
 import { instanceOf, string } from 'prop-types'
@@ -10,7 +10,8 @@ type ActionButtonProps = {
   style?: { [key: string]: any }
   title: string
   color?: string
-  onPress: ((event: GestureResponderEvent) => void) | undefined
+  onPress: () => Promise<void>
+  // onPress: ((event: GestureResponderEvent) => void) | undefined
 }
 
 const hideStyle = {
@@ -19,6 +20,15 @@ const hideStyle = {
 }
 
 export const ActionButton = ({ hidden = false, style = {}, color = '#9F9F9F', title, onPress }: ActionButtonProps) => {
+  const [loading, setLoading] = useState(false)
+
+  // onPress
+  const onPressAction = async () => {
+    setLoading(true)
+    await onPress()
+    setLoading(false)
+  }
+
   // occupy space but hide.
   const defaultStyle = {
     backgroundColor: color,
@@ -40,8 +50,12 @@ export const ActionButton = ({ hidden = false, style = {}, color = '#9F9F9F', ti
       }
     : {}
   return hidden ? null : (
-    <TouchableOpacity style={{ ...defaultStyle, ...style, ...hide }} disabled={hidden} onPress={onPress}>
-      <Text style={{ color: style.color || defaultStyle.color }}>{title}</Text>
+    <TouchableOpacity style={{ ...defaultStyle, ...style, ...hide }} disabled={hidden || loading} onPress={onPressAction}>
+      {loading ? (
+        <ActivityIndicator size='small' color='#ffffff' style={{ paddingRight: 8 }} />
+      ) : (
+        <Text style={{ color: style.color || defaultStyle.color }}>{title}</Text>
+      )}
     </TouchableOpacity>
   )
 }
