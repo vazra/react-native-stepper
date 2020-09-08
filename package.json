@@ -18,6 +18,7 @@
     "build-stepper": "yarn workspace @material.ui/react-native-stepper run build",
     "watch-stepper": "yarn workspace @material.ui/react-native-stepper run watch",
     "publish": "yarn build && lerna changed && cross-env HUSKY_BYPASS=true lerna publish --cd-version patch",
+    "release": "yarn run publish",
     "clean": "lerna clean -y && rimraf node_modules",
     "reinstall": "yarn run clean && yarn run bootstrap"
   },
