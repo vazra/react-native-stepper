@@ -7,17 +7,21 @@ type Props = {
   title?: string
   subTitle?: string
   allowTapOnTitle: boolean
+  onTitleTap?: Function
 }
 
 // TODO: Add horizontal view
-export function StepHeaderView({ position, title, subTitle, allowTapOnTitle }: Props) {
+export function StepHeaderView({ position, title, subTitle, allowTapOnTitle, onTitleTap }: Props) {
   const { jumpToStep } = useStep()
   return (
     <View style={styles.container}>
       <Text
         style={styles.title}
         onPress={() => {
-          allowTapOnTitle && jumpToStep && jumpToStep(position)
+          if (allowTapOnTitle && jumpToStep) {
+            onTitleTap && onTitleTap()
+            jumpToStep(position)
+          }
         }}>
         {title}
       </Text>

@@ -12,6 +12,7 @@ type Props = {
   nextButtonText?: string
   previousButtonText?: string
   allowTapOnTitle?: boolean
+  onTitleTap?: Function
   children: ReactNode
   onNext?: (...params: any[]) => Promise<boolean | string>
   onPrevious?: (...params: any[]) => Promise<boolean | string>
@@ -28,6 +29,7 @@ export function StepView({
   nextButtonText = 'Next',
   previousButtonText = 'Back',
   allowTapOnTitle,
+  onTitleTap,
 }: Props) {
   const { activeStep, stepCount, jumpStep, themeColor } = useStep()
   if (onNext === undefined) onNext = () => Promise.resolve(true)
@@ -74,7 +76,12 @@ export function StepView({
         {position < stepCount - 1 && <View style={styles.connectingLine} />}
       </View>
       <View style={styles.contentRow}>
-        <StepHeaderView allowTapOnTitle={allowTapOnTitle || false} title={title} subTitle={subTitle} position={position}></StepHeaderView>
+        <StepHeaderView
+          allowTapOnTitle={allowTapOnTitle || false}
+          onTitleTap={onTitleTap}
+          title={title}
+          subTitle={subTitle}
+          position={position}></StepHeaderView>
         <View style={styles.contentView}>
           {err && <Text style={{ color: 'red' }}>{`Error: ${err}`}</Text>}
           {position === activeStep && (

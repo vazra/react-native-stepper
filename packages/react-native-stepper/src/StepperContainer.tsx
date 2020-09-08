@@ -12,6 +12,7 @@ type Props = {
   children: ReactElement<typeof StepView>[]
   layout?: 'vertical' | 'horizontal'
   allowTapOnTitle?: boolean
+  onTitleTap?: Function // function to be run on every title tap. Eg: reset the edit mode etc.
 }
 
 export function StepperContainer({
